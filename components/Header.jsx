@@ -11,10 +11,16 @@ import {
 import { HomeIcon } from "@heroicons/react/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { selectModal, toggleModal } from "../store/modalSlice";
 
 const Header = () => {
   const { data: session } = useSession();
+  const modal = useSelector(selectModal);
+  const dispatch = useDispatch();
   const router = useRouter();
+
+  console.log(modal);
 
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50">
@@ -67,7 +73,10 @@ const Header = () => {
                   3
                 </div>
               </div>
-              <PlusCircleIcon className="navBtn" />
+              <PlusCircleIcon
+                onClick={() => dispatch(toggleModal())}
+                className="navBtn"
+              />
               <UserGroupIcon className="navBtn" />
               <HeartIcon className="navBtn" />
               <img
