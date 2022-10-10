@@ -16,11 +16,8 @@ import { selectModal, toggleModal } from "../store/modalSlice";
 
 const Header = () => {
   const { data: session } = useSession();
-  const modal = useSelector(selectModal);
   const dispatch = useDispatch();
   const router = useRouter();
-
-  console.log(modal);
 
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50">
@@ -49,7 +46,7 @@ const Header = () => {
         </div>
 
         <div className="max-w-xs">
-          <div className="relative mt-1 p-3">
+          <div className="hidden relative mt-1 p-3">
             <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
               <SearchIcon className="h-5 w-5 text-gray-500" />
             </div>
@@ -62,7 +59,7 @@ const Header = () => {
         </div>
 
         <div className="flex items-center justify-end space-x-4">
-          <MenuIcon className="h-5 md:hidden cursor-pointer" />
+          {/* <MenuIcon className="h-5 md:hidden cursor-pointer" /> */}
 
           <HomeIcon onClick={() => router.push("/")} className="navBtn" />
           {session ? (
